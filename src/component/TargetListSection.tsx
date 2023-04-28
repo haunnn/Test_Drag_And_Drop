@@ -1,33 +1,24 @@
-import { useDrop } from "react-dnd";
 import styled from "styled-components"
+import DndBox from "./DndBox";
 
-const TargetPanel = () => {
-  const [{ canDrop, isOver }, dropRef ] = useDrop(() => ({
-    accept: 'itemCard',
-    drop: () => ({name: 'Some name'}),
-    collect: (monitor) => ({
-        isOver: monitor.isOver(),
-        canDrop: monitor.canDrop(),
-    }),
-  }),
-  []
-  );
-  
-  console.log('here', {canDrop, isOver})
+const TargetListSection = () => {
 
   return (
-    <TargetPanelLayout ref={dropRef}>
+    <TargetPanelLayout>
       <HeaderWrapper>
         분석 요소
       </HeaderWrapper>
       <ContentWrapper>
-
+        <DndBox type={"STOCK"} />
+        <DndBox type={"KEYWORD1"} />
+        <DndBox type={"KEYWORD2"} />
+        <DndBox type={"KEYWORD3"} />
       </ContentWrapper>
     </TargetPanelLayout>
   )
 }
 
-export default TargetPanel;
+export default TargetListSection;
 
 const TargetPanelLayout = styled.div`
   width: 60%;
@@ -46,4 +37,8 @@ const HeaderWrapper = styled.div`
 `
 
 const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  margin: 24px 30px 30px 40px;
 `

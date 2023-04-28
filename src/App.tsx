@@ -1,23 +1,34 @@
 import styled from "styled-components"
-import ItemPanel from "./component/ItemPanel";
-import TargetPanel from "./component/TargetPanel";
+import StockAccordion from "./component/StockAccordion";
+import KeywordAccordion from "./component/KeywordAccordion";
+import TargetListSection from "./component/TargetListSection";
 
 function App() {
   return (
     <div className="App">
       <h1>Drag and Drop Practice</h1>
-      <Wrapper>
-        <ItemPanel />
-        <TargetPanel />
-      </Wrapper>
+      <MainWrapper>
+        <AccordionWrapper>
+          <StockAccordion />
+          <KeywordAccordion />
+        </AccordionWrapper>
+        <TargetListSection />
+      </MainWrapper>
     </div>
   );
 }
 
 export default App;
 
-const Wrapper = styled.div`
+const MainWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+`
+
+const AccordionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
 `
