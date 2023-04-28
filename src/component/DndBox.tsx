@@ -1,10 +1,8 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
-  KeywordType,
   selectedLaboratoryStockState,
   selectedLaboratoryKeywordListState,
 } from "../store/LaboratoryAtoms";
-import { useDrop } from "react-dnd";
 
 import styled from "styled-components";
 
@@ -24,28 +22,16 @@ const DndBox = ({ type }: Props) => {
     selectedLaboratoryKeywordListState
   );
 
-  const [{ canDrop, isOver }, dropRef] = useDrop(
-    () => ({
-      accept: type.slice(0, 7).toString(),
-      drop: () => ({ name: type }),
-      collect: (monitor) => ({
-        isOver: monitor.isOver(),
-        canDrop: monitor.canDrop(),
-      }),
-    }),
-    []
-  );
-
   console.log(keywordList);
 
   return (
     <BoxWrapper>
       {type === "STOCK" && stock ? (
         <StockCardMini item={stock} />
-      ) : type.startsWith("KEYWORD") && Object.keys(keywordList[parseInt(type[7])-1]).length > 0 ? (
+      ) : type.startsWith("KEYWORD") && keywordList.length >= parseInt(type[7]) ? (
         <KeywordCardMini item={keywordList[parseInt(type[7])-1]} />
       ) : (
-        <DropBoxWrapper ref={dropRef}>{text}</DropBoxWrapper>
+        <DropBoxWrapper>{text}</DropBoxWrapper>
       )}
     </BoxWrapper>
   );

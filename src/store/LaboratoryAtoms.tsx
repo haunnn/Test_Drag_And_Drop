@@ -15,7 +15,7 @@ export const selectedLaboratoryStockState = atom<StockType | undefined>({
   default: undefined,
 })
 
-export const selectedLaboratoryKeywordListState = atom<KeywordType[] |any[]>({
+export const selectedLaboratoryKeywordListState = atom<KeywordType[] | []>({
   key: "selectedLaboratoryKeywordListState",
-  default: [{}, {}, {}],
+  default: [],
 })

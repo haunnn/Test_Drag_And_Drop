@@ -1,10 +1,23 @@
-import styled from "styled-components"
+import { useDrop } from "react-dnd";
 import DndBox from "./DndBox";
+import styled from "styled-components"
 
 const TargetListSection = () => {
 
+  const [{ canDrop, isOver }, dropRef] = useDrop(
+    () => ({
+      accept: "card",
+      // drop: () => ({ name: type }),
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop(),
+      }),
+    }),
+    []
+  );
+
   return (
-    <TargetPanelLayout>
+    <TargetPanelLayout ref={dropRef}>
       <HeaderWrapper>
         분석 요소
       </HeaderWrapper>

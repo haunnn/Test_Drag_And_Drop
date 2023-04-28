@@ -18,13 +18,12 @@ const DndCard = ({ type, item, size="100px" }: ParamProps) => {
   const setStock = useSetRecoilState(selectedLaboratoryStockState);
   const setKeywordList = useSetRecoilState(selectedLaboratoryKeywordListState);
   
-  
   //isDragging은 아이템이 드래깅 중일때 true, 아닐때 false를 리턴 받는다. 드래깅 중인 아이템을 스타일링 할때 사용
   //dragRef는 리액트의 useRef처럼 작동한다. 드래그될 부분에 선언
   //previewRef는 드래깅될때 보여질 프리뷰 이미지
   const [{ isDragging }, dragRef, previewRef] = useDrag(
     () => ({
-      type,
+      type: "card",
       item,
       collect: (monitor) => ({
         //isDragging 변수가 현재 드래깅중인지 아닌지를 리턴
@@ -43,11 +42,8 @@ const DndCard = ({ type, item, size="100px" }: ParamProps) => {
 
         // KEYWORD
         if (type === "KEYWORD") {
-          const targetIdx = parseInt(dropResult.name[7])
-          console.log(targetIdx, item)
-          setKeywordList((prev => prev.map((prevItem, index) => {
-            return targetIdx === index + 1 ? item : prevItem
-          })))
+          setKeywordList((prev) => [...prev, item])
+          return;
         }
       }
     }),
