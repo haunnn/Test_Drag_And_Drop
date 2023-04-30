@@ -39,6 +39,7 @@ const sampleItem = [
 ];
 
 const StockAccordion = () => {
+  
   return (
     <PanelLayout>
       <HeaderWrapper>종목</HeaderWrapper>

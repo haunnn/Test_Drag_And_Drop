@@ -22,7 +22,6 @@ const DndBox = ({ type }: Props) => {
     selectedLaboratoryKeywordListState
   );
 
-  console.log(keywordList);
 
   return (
     <BoxWrapper>
